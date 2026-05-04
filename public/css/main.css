@@ -1,0 +1,42 @@
+html,
+body {
+  background-color: lightblue;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+body nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+body nav li {
+  display: inline;
+  margin-right: 15px;
+}
+
+body nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+body nav a:hover {
+  color: #0066cc;
+}
+
+img {
+  max-width: 100%;
+}
+
+.main-logo {
+  display: block;
+  margin-top: 1rem;
+}
+
+li img {
+  height: 48px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
