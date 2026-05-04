@@ -209,10 +209,10 @@ a {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  padding: 1.9rem 0;
+  padding: 2.25rem 0;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
-    #f3fafc;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    var(--hero);
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -253,39 +253,40 @@ a {
 
 .hero--page .hero-copy,
 .hero--page .hero-visual {
-  color: var(--text);
+  color: #fff;
 }
 
 .hero--page .hero-copy h1 {
-  color: var(--text);
+  color: #fff;
 }
 
 .hero--page .hero-lead,
 .hero--page .hero-card__text,
 .hero--page .hero-card__label {
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .hero--page .hero-card {
-  background: var(--surface);
-  border-color: var(--line);
-  box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+  backdrop-filter: blur(4px);
 }
 
 .hero--page .hero-card--accent {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .hero--page .button--secondary {
-  color: var(--hero);
-  background: #fff;
-  border-color: transparent;
+  color: #fff;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 .hero--page .button--secondary:hover,
 .hero--page .button--secondary:focus-visible {
-  background: var(--brand-soft);
-  color: var(--brand-dark);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
 }
 
 .hero-card--accent {
