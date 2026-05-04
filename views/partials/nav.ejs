@@ -1,7 +1,8 @@
 <nav class="site-nav" aria-label="Main">
   <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/organizations">Organizations</a></li>
-    <li><a href="/projects">Projects</a></li>
+    <li><a class="<%= currentPage === 'home' ? 'is-active' : '' %>" href="/">Home</a></li>
+    <li><a class="<%= currentPage === 'organizations' ? 'is-active' : '' %>" href="/organizations">Organizations</a></li>
+    <li><a class="<%= currentPage === 'projects' ? 'is-active' : '' %>" href="/projects">Projects</a></li>
+    <li><a class="<%= currentPage === 'categories' ? 'is-active' : '' %>" href="/categories">Categories</a></li>
   </ul>
 </nav>
