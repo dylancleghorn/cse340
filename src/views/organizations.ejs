@@ -24,25 +24,14 @@
 </section>
 
 <section class="org-grid" aria-label="Partner organizations">
-  <article class="org-card">
-    <img class="org-logo" src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo">
-    <div>
-      <h2>BrightFuture Builders</h2>
-      <p>info@brightfuture.org</p>
-    </div>
-  </article>
-  <article class="org-card">
-    <img class="org-logo" src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo">
-    <div>
-      <h2>GreenHarvest Growers</h2>
-      <p>contact@greenharvest.org</p>
-    </div>
-  </article>
-  <article class="org-card">
-    <img class="org-logo" src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo">
-    <div>
-      <h2>UnityServe Volunteers</h2>
-      <p>hello@unityserve.org</p>
-    </div>
-  </article>
+  <% organizations.forEach((organization) => { %>
+    <article class="org-card">
+      <img class="org-logo" src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
+      <div>
+        <h2><%= organization.name %></h2>
+        <p><%= organization.contact_email %></p>
+        <p><%= organization.description %></p>
+      </div>
+    </article>
+  <% }) %>
 </section>
