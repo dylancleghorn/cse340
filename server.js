@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import db, { testConnection } from './src/models/db.js';
+import { getAllOrganizations } from './src/models/organizations.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -21,13 +22,11 @@ const renderPage = (viewName, title, currentPage) => (req, res) => {
 
 const organizationsPage = async (req, res, next) => {
   try {
-    const result = await db.query(
-      'SELECT organization_id, name, description, contact_email, logo_filename FROM organization ORDER BY name'
-    );
+    const organizations = await getAllOrganizations();
     res.render('organizations', {
-      title: 'Organizations',
+      title: 'Our Partner Organizations',
       currentPage: 'organizations',
-      organizations: result.rows,
+      organizations,
     });
   } catch (error) {
     next(error);

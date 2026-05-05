@@ -1,37 +1,24 @@
-<section class="hero hero--page">
-  <div class="hero__inner">
-    <div class="hero-copy">
-      <p class="eyebrow eyebrow--page">Partners</p>
-      <h1>Organizations</h1>
-      <p class="hero-lead">Groups below can connect volunteers with meaningful work in the community.</p>
-      <div class="hero-actions">
-        <a class="button button--primary" href="/projects">View projects</a>
-        <a class="button button--secondary" href="/categories">Browse categories</a>
+<main class="page-shell">
+  <section class="hero hero--page">
+    <div class="hero__inner">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--page">Partners</p>
+        <h1><%= title %></h1>
+        <p class="hero-lead">Here are a few of our partner organizations:</p>
       </div>
     </div>
+  </section>
 
-    <div class="hero-visual">
-      <div class="hero-card">
-        <p class="hero-card__label">Partner directory</p>
-        <p class="hero-card__text">Three organizations are listed here with logos and contact info.</p>
-      </div>
-      <div class="hero-card hero-card--accent">
-        <p class="hero-card__label">Use case</p>
-        <p class="hero-card__text">This page gives volunteers a quick way to find who is hosting service work.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="org-grid" aria-label="Partner organizations">
-  <% organizations.forEach((organization) => { %>
-    <article class="org-card">
-      <img class="org-logo" src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
-      <div>
-        <h2><%= organization.name %></h2>
-        <p><%= organization.contact_email %></p>
-        <p><%= organization.description %></p>
-      </div>
-    </article>
-  <% }) %>
-</section>
+  <section class="org-grid" aria-label="Partner organizations">
+    <% organizations.forEach((organization) => { %>
+      <article class="org-card">
+        <img class="org-logo" src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
+        <div>
+          <h2><%= organization.name %></h2>
+          <p><%= organization.contact_email %></p>
+          <p><%= organization.description %></p>
+        </div>
+      </article>
+    <% }) %>
+  </section>
+</main>

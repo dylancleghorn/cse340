@@ -441,6 +441,7 @@ a {
 
 .org-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1rem;
 }
 
 .org-card {
