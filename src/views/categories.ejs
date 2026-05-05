@@ -12,7 +12,10 @@
   <section class="category-grid" aria-label="Service project categories">
     <% categories.forEach((category) => { %>
       <article class="category-card">
-        <h2><%= category.name %></h2>
+        <div>
+          <h2><%= category.name %></h2>
+          <p><%= category.description %></p>
+        </div>
       </article>
     <% }) %>
   </section>

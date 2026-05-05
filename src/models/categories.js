@@ -2,7 +2,7 @@ import db from './db.js'
 
 const getAllCategories = async() => {
     const query = `
-        SELECT category_id, name
+        SELECT category_id, name, description
         FROM public.category
         ORDER BY name;
     `;

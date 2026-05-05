@@ -591,9 +591,9 @@ a {
   padding: 1.1rem;
   position: relative;
   overflow: hidden;
-  min-height: 6rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  gap: 1rem;
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
 
@@ -616,6 +616,10 @@ a {
 .category-card:hover::before,
 .category-card:focus-within::before {
   background: var(--hero);
+}
+
+.category-card > div {
+  min-width: 0;
 }
 
 .site-footer {

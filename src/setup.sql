@@ -47,19 +47,20 @@ CREATE TABLE service_project (
 
 CREATE TABLE category (
     category_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE
+    name VARCHAR(100) NOT NULL UNIQUE,
+    description TEXT NOT NULL
 );
 
 -- ========================================
 -- Insert sample data: Categories
 -- ========================================
 
-INSERT INTO category (name)
+INSERT INTO category (name, description)
 VALUES
-    ('Environmental'),
-    ('Educational'),
-    ('Community Service'),
-    ('Health and Wellness');
+    ('Environmental', 'Projects focused on conservation, cleanup, and sustainability.'),
+    ('Educational', 'Tutoring, mentoring, and learning support for students and families.'),
+    ('Community Service', 'Hands-on volunteer work that strengthens neighborhoods and local programs.'),
+    ('Health and Wellness', 'Service projects that support physical, mental, and community well-being.');
 
 -- ========================================
 -- Insert sample data: Service Projects
