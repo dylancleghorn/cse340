@@ -3,8 +3,9 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
-import db, { testConnection } from './src/models/db.js';
+import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
+import { getAllProjects } from './src/models/projects.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -33,6 +34,20 @@ const organizationsPage = async (req, res, next) => {
   }
 };
 
+const projectsPage = async (req, res, next) => {
+  try {
+    const projects = await getAllProjects();
+    console.log(projects);
+    res.render('projects', {
+      title: 'Service Projects',
+      currentPage: 'projects',
+      projects,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 /**
  * Configure Express middleware
  */
@@ -50,7 +65,7 @@ app.locals.currentYear = currentYear;
  */
 app.get('/', renderPage('index', 'Home', 'home'));
 app.get('/organizations', organizationsPage);
-app.get('/projects', renderPage('projects', 'Projects', 'projects'));
+app.get('/projects', projectsPage);
 app.get('/categories', renderPage('categories', 'Categories', 'categories'));
 
 app.use((error, req, res, next) => {

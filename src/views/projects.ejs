@@ -1,47 +1,21 @@
-<section class="hero hero--page">
-  <div class="hero__inner">
-    <div class="hero-copy">
-      <p class="eyebrow eyebrow--page">Projects</p>
-      <h1>Service Projects</h1>
-      <p class="hero-lead">Browse active volunteer opportunities with enough detail to scan quickly.</p>
-      <div class="hero-actions">
-        <a class="button button--primary" href="/categories">Browse categories</a>
-        <a class="button button--secondary" href="/organizations">View organizations</a>
+<main class="page-shell">
+  <section class="hero hero--page">
+    <div class="hero__inner">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--page">Projects</p>
+        <h1><%= title %></h1>
+        <p class="hero-lead">Browse active volunteer opportunities from our partner organizations.</p>
       </div>
     </div>
+  </section>
 
-    <div class="hero-visual">
-      <div class="hero-card">
-        <p class="hero-card__label">Featured</p>
-        <p class="hero-card__text">Every listing is written like a simple brief so users can understand the work at a glance.</p>
-      </div>
-      <div class="hero-card hero-card--accent">
-        <p class="hero-card__label">What to expect</p>
-        <p class="hero-card__text">A short list of current projects is shown below for quick scanning.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="project-layout">
-  <article class="project-highlight">
-    <p class="section-label">Featured</p>
-    <h2>Upcoming Service Projects</h2>
-    <p>Every listing is written like a simple brief so users can understand the work at a glance.</p>
-  </article>
-
-  <div class="project-stack">
-    <article class="project-card">
-      <strong>Park Cleanup</strong>
-      <p>Join us to clean up local parks and make them beautiful.</p>
-    </article>
-    <article class="project-card">
-      <strong>Food Drive</strong>
-      <p>Help collect and distribute food to those in need.</p>
-    </article>
-    <article class="project-card">
-      <strong>Community Tutoring</strong>
-      <p>Volunteer to tutor students in various subjects.</p>
-    </article>
-  </div>
-</section>
+  <section class="project-stack" aria-label="Service projects">
+    <% projects.forEach((project) => { %>
+      <article class="project-card">
+        <strong><%= new Date(project.project_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) %>: <%= project.title %> (<%= project.organization_name %>)</strong>
+        <p><%= project.description %></p>
+        <p><%= project.location %></p>
+      </article>
+    <% }) %>
+  </section>
+</main>

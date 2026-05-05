@@ -120,7 +120,7 @@ a {
 }
 
 .eyebrow--page {
-  color: var(--hero);
+  color: rgba(255, 255, 255, 0.94);
 }
 
 .site-nav ul {
@@ -492,6 +492,7 @@ a {
 .project-stack {
   display: grid;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 .project-card {
