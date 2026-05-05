@@ -6,6 +6,7 @@ import expressLayouts from 'express-ejs-layouts';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllProjects } from './src/models/projects.js';
+import { getAllCategories } from './src/models/categories.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -66,7 +67,21 @@ app.locals.currentYear = currentYear;
 app.get('/', renderPage('index', 'Home', 'home'));
 app.get('/organizations', organizationsPage);
 app.get('/projects', projectsPage);
-app.get('/categories', renderPage('categories', 'Categories', 'categories'));
+
+const categoriesPage = async (req, res, next) => {
+  try {
+    const categories = await getAllCategories();
+    res.render('categories', {
+      title: 'Categories',
+      currentPage: 'categories',
+      categories,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+app.get('/categories', categoriesPage);
 
 app.use((error, req, res, next) => {
   console.error(error);

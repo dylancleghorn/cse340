@@ -1,47 +1,19 @@
-<section class="hero hero--page">
-  <div class="hero__inner">
-    <div class="hero-copy">
-      <p class="eyebrow eyebrow--page">Browse by type</p>
-      <h1>Service Project Categories</h1>
-      <p class="hero-lead">Use the categories below to sort opportunities by the kind of impact you want to make.</p>
-      <div class="hero-actions">
-        <a class="button button--primary" href="/projects">View projects</a>
-        <a class="button button--secondary" href="/organizations">View organizations</a>
+<main class="page-shell">
+  <section class="hero hero--page">
+    <div class="hero__inner">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--page">Browse by type</p>
+        <h1><%= title %></h1>
+        <p class="hero-lead">Use the categories below to sort opportunities by the kind of impact you want to make.</p>
       </div>
     </div>
+  </section>
 
-    <div class="hero-visual">
-      <div class="hero-card">
-        <p class="hero-card__label">Browse smarter</p>
-        <p class="hero-card__text">Categories help users narrow projects by theme before they start searching.</p>
-      </div>
-      <div class="hero-card hero-card--accent">
-        <p class="hero-card__label">Placeholder set</p>
-        <p class="hero-card__text">Environmental, Educational, Community Service, and Health and Wellness.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="category-grid" aria-label="Service project categories">
-  <article class="category-card category-card--teal">
-    <p class="category-index">01</p>
-    <h2>Environmental</h2>
-    <p>Projects focused on conservation, cleanup, and sustainability.</p>
-  </article>
-  <article class="category-card category-card--blue">
-    <p class="category-index">02</p>
-    <h2>Educational</h2>
-    <p>Tutoring, mentoring, and learning support for students and families.</p>
-  </article>
-  <article class="category-card category-card--gold">
-    <p class="category-index">03</p>
-    <h2>Community Service</h2>
-    <p>Hands-on volunteer work that strengthens neighborhoods and local programs.</p>
-  </article>
-  <article class="category-card category-card--green">
-    <p class="category-index">04</p>
-    <h2>Health and Wellness</h2>
-    <p>Service projects that support physical, mental, and community well-being.</p>
-  </article>
-</section>
+  <section class="category-grid" aria-label="Service project categories">
+    <% categories.forEach((category) => { %>
+      <article class="category-card">
+        <h2><%= category.name %></h2>
+      </article>
+    <% }) %>
+  </section>
+</main>

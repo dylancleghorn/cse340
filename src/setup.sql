@@ -2,6 +2,8 @@
 -- Organization Table
 -- ========================================
 
+DROP TABLE IF EXISTS service_project_category;
+DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS service_project;
 DROP TABLE IF EXISTS organization;
 
@@ -40,6 +42,26 @@ CREATE TABLE service_project (
 );
 
 -- ========================================
+-- Category Table
+-- ========================================
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- ========================================
+-- Insert sample data: Categories
+-- ========================================
+
+INSERT INTO category (name)
+VALUES
+    ('Environmental'),
+    ('Educational'),
+    ('Community Service'),
+    ('Health and Wellness');
+
+-- ========================================
 -- Insert sample data: Service Projects
 -- ========================================
 
@@ -64,8 +86,57 @@ VALUES
     (3, 'Neighborhood Supply Kits', 'Assemble hygiene and school supply kits for distribution through partner agencies.', 'UnityServe Office', '2026-06-10');
 
 -- ========================================
+-- Service Project Category Table
+-- ========================================
+
+CREATE TABLE service_project_category (
+    service_project_id INT NOT NULL,
+    category_id INT NOT NULL,
+    PRIMARY KEY (service_project_id, category_id),
+    CONSTRAINT fk_service_project_category_project
+        FOREIGN KEY (service_project_id)
+        REFERENCES service_project (service_project_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_service_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES category (category_id)
+        ON DELETE CASCADE
+);
+
+-- ========================================
+-- Insert sample data: Service Project Categories
+-- ========================================
+
+INSERT INTO service_project_category (service_project_id, category_id)
+VALUES
+    (1, 3),
+    (1, 1),
+    (2, 1),
+    (3, 1),
+    (3, 3),
+    (4, 4),
+    (5, 2),
+    (5, 3),
+    (6, 2),
+    (7, 2),
+    (8, 1),
+    (8, 3),
+    (9, 3),
+    (10, 1),
+    (10, 4),
+    (11, 3),
+    (12, 4),
+    (12, 3),
+    (13, 4),
+    (14, 3),
+    (15, 4),
+    (15, 3);
+
+-- ========================================
 -- Verify data
 -- ========================================
 
 SELECT * FROM organization;
 SELECT * FROM service_project;
+SELECT * FROM category;
+SELECT * FROM service_project_category;
