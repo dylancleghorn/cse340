@@ -437,7 +437,7 @@ a {
   inset: 0 auto auto 0;
   width: 100%;
   height: 4px;
-  background: var(--accent);
+  background: var(--hero);
 }
 
 .feature-card:hover,
@@ -449,7 +449,7 @@ a {
 
 .feature-card:hover::before,
 .feature-card:focus-within::before {
-  background: var(--hero);
+  background: var(--accent);
 }
 
 .page-banner {
@@ -514,7 +514,7 @@ a {
   inset: 0 auto auto 0;
   width: 100%;
   height: 4px;
-  background: var(--accent);
+  background: var(--hero);
 }
 
 .org-card:hover,
@@ -526,7 +526,7 @@ a {
 
 .org-card:hover::before,
 .org-card:focus-within::before {
-  background: var(--hero);
+  background: var(--accent);
 }
 
 .project-layout {
@@ -567,7 +567,7 @@ a {
   inset: 0 auto auto 0;
   width: 100%;
   height: 4px;
-  background: var(--accent);
+  background: var(--hero);
 }
 
 .project-card:hover,
@@ -579,7 +579,7 @@ a {
 
 .project-card:hover::before,
 .project-card:focus-within::before {
-  background: var(--hero);
+  background: var(--accent);
 }
 
 .category-grid {
@@ -603,7 +603,7 @@ a {
   inset: 0 auto auto 0;
   width: 100%;
   height: 4px;
-  background: var(--accent);
+  background: var(--hero);
 }
 
 .category-card:hover,
@@ -615,7 +615,7 @@ a {
 
 .category-card:hover::before,
 .category-card:focus-within::before {
-  background: var(--hero);
+  background: var(--accent);
 }
 
 .category-card > div {
