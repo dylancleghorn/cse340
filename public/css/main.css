@@ -1076,12 +1076,57 @@ a {
 
   .hero__inner {
     width: min(100% - 0.9rem, 1160px);
-    padding: 0.5rem 1rem;
+    padding: 1rem 1rem 1.1rem;
     grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .hero--home .hero-copy {
+    padding: 0.1rem 0 0;
+  }
+
+  .hero--home .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero--detail .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero--detail .hero-visual {
+    justify-items: stretch;
+  }
+
+  .hero--home .hero-visual {
+    justify-items: stretch;
+  }
+
+  .hero--home .hero-image-frame {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero--home .hero-image {
+    object-position: center 32%;
   }
 
   .hero-card {
     width: 100%;
+  }
+
+  .hero-lead {
+    max-width: none;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    gap: 0.75rem;
+  }
+
+  .button {
+    min-height: 2.75rem;
+    padding: 0.65rem 1rem;
   }
 
   .site-brand__logo {
