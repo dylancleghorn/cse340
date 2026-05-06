@@ -4,9 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import { testConnection } from './src/models/db.js';
-import { getAllOrganizations } from './src/models/organizations.js';
-import { getAllProjects } from './src/models/projects.js';
-import { getAllCategories } from './src/models/categories.js';
+import router from './src/routes.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -18,36 +16,6 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const currentYear = new Date().getFullYear();
-const renderPage = (viewName, title, currentPage) => (req, res) => {
-  res.render(viewName, { title, currentPage });
-};
-
-const organizationsPage = async (req, res, next) => {
-  try {
-    const organizations = await getAllOrganizations();
-    res.render('organizations', {
-      title: 'Our Partner Organizations',
-      currentPage: 'organizations',
-      organizations,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const projectsPage = async (req, res, next) => {
-  try {
-    const projects = await getAllProjects();
-    console.log(projects);
-    res.render('projects', {
-      title: 'Service Projects',
-      currentPage: 'projects',
-      projects,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
 
 /**
  * Configure Express middleware
@@ -61,31 +29,61 @@ app.use(expressLayouts);
 app.set('layout', 'layouts/layout');
 app.locals.currentYear = currentYear;
 
+// Ignore Chrome DevTools probe requests
+app.use((req, res, next) => {
+  if (req.path === '/.well-known/appspecific/com.chrome.devtools.json') {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
+// Middleware to log all incoming requests
+app.use((req, res, next) => {
+  if (NODE_ENV === 'development') {
+    console.log(`${req.method} ${req.url}`);
+  }
+  next(); // Pass control to the next middleware or route
+});
+
+// Middleware to make NODE_ENV available to all templates
+app.use((req, res, next) => {
+  res.locals.NODE_ENV = NODE_ENV;
+  next();
+});
+
 /**
  * Routes
  */
-app.get('/', renderPage('index', 'Home', 'home'));
-app.get('/organizations', organizationsPage);
-app.get('/projects', projectsPage);
+// Use the imported router to handle routes
+app.use(router);
 
-const categoriesPage = async (req, res, next) => {
-  try {
-    const categories = await getAllCategories();
-    res.render('categories', {
-      title: 'Categories',
-      currentPage: 'categories',
-      categories,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+// Catch-all route for 404 errors
+app.use((req, res, next) => {
+  const err = new Error('Page Not Found');
+  err.status = 404;
+  next(err);
+});
 
-app.get('/categories', categoriesPage);
+// Global error handler
+app.use((err, req, res, next) => {
+  // Log error details for debugging
+  console.error('Error occurred:', err.message);
+  console.error('Stack trace:', err.stack);
 
-app.use((error, req, res, next) => {
-  console.error(error);
-  res.status(500).send('Internal Server Error');
+  // Determine status and template
+  const status = err.status || 500;
+  const template = status === 404 ? '404' : '500';
+
+  // Prepare data for the template
+  const context = {
+    title: status === 404 ? 'Page Not Found' : 'Server Error',
+    currentPage: '',
+    error: err.message,
+    stack: err.stack,
+  };
+
+  // Render the appropriate error template
+  res.status(status).render(`errors/${template}`, context);
 });
 
 app.listen(PORT, async () => {

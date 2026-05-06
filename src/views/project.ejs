@@ -1,0 +1,39 @@
+<main class="page-shell">
+  <section class="hero hero--page">
+    <div class="hero__inner">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--page">Service Project</p>
+        <h1><%= project.title %></h1>
+        <p class="hero-lead"><%= project.description %></p>
+        <p class="hero-contact">
+          <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-stack project-stack--detail" aria-label="Project details">
+    <% const projectDate = new Date(project.date); %>
+    <article class="project-card">
+      <time class="project-date-card" datetime="<%= projectDate.toISOString().slice(0, 10) %>">
+        <span class="project-date-card__month"><%= projectDate.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }) %></span>
+        <span class="project-date-card__day"><%= projectDate.toLocaleDateString('en-US', { day: 'numeric', timeZone: 'UTC' }) %></span>
+        <span class="project-date-card__year"><%= projectDate.toLocaleDateString('en-US', { year: 'numeric', timeZone: 'UTC' }) %></span>
+      </time>
+      <div class="project-card__body">
+        <div class="project-card__heading">
+          <strong class="project-card__title"><%= project.title %></strong>
+          <a class="project-card__organization-link" href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
+        </div>
+        <p class="project-card__description"><%= project.description %></p>
+        <p class="project-card__location">
+          <svg class="project-location__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s6-6.1 6-11a6 6 0 1 0-12 0c0 4.9 6 11 6 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+            <circle cx="12" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          </svg>
+          <span><%= project.location %></span>
+        </p>
+      </div>
+    </article>
+  </section>
+</main>

@@ -11,14 +11,14 @@
 
   <section class="org-grid" aria-label="Partner organizations">
     <% organizations.forEach((organization) => { %>
-      <article class="org-card">
+      <a class="org-card org-card--link" href="/organization/<%= organization.organization_id %>">
         <img class="org-logo" src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo">
         <div>
           <h2><%= organization.name %></h2>
           <p><%= organization.contact_email %></p>
           <p><%= organization.description %></p>
         </div>
-      </article>
+      </a>
     <% }) %>
   </section>
 </main>

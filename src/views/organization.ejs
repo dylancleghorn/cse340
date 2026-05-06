@@ -1,0 +1,47 @@
+<main class="page-shell">
+  <section class="hero hero--page hero--detail">
+    <div class="hero__inner">
+      <div class="hero-copy">
+        <p class="eyebrow eyebrow--page">Partner</p>
+        <h1><%= organizationDetails.name %></h1>
+        <p class="hero-lead"><%= organizationDetails.description %></p>
+        <p class="hero-contact">
+          <a href="mailto:<%= organizationDetails.contact_email %>"><%= organizationDetails.contact_email %></a>
+        </p>
+      </div>
+
+      <div class="hero-visual">
+        <img class="org-logo org-logo--hero" src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo">
+      </div>
+    </div>
+  </section>
+
+  <section class="project-stack project-stack--detail" aria-label="Service projects">
+    <h3>Service Projects</h3>
+    <% if (projects.length > 0) { %>
+      <% projects.forEach((project) => { %>
+        <% const projectDate = new Date(project.project_date); %>
+        <a class="project-card project-card--link" href="/project/<%= project.service_project_id %>">
+          <time class="project-date-card" datetime="<%= projectDate.toISOString().slice(0, 10) %>">
+            <span class="project-date-card__month"><%= projectDate.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' }) %></span>
+            <span class="project-date-card__day"><%= projectDate.toLocaleDateString('en-US', { day: 'numeric', timeZone: 'UTC' }) %></span>
+            <span class="project-date-card__year"><%= projectDate.toLocaleDateString('en-US', { year: 'numeric', timeZone: 'UTC' }) %></span>
+          </time>
+          <div class="project-card__body">
+            <strong class="project-card__title"><%= project.title %></strong>
+            <p class="project-card__description"><%= project.description %></p>
+            <p class="project-card__location">
+              <svg class="project-location__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s6-6.1 6-11a6 6 0 1 0-12 0c0 4.9 6 11 6 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
+                <circle cx="12" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+              </svg>
+              <span><%= project.location %></span>
+            </p>
+          </div>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>No service projects are currently listed for this organization.</p>
+    <% } %>
+  </section>
+</main>

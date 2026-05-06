@@ -1,0 +1,47 @@
+// Import any needed model functions
+import { getAllOrganizations, getOrganizationDetails } from '../models/organizations.js';
+import { getProjectsByOrganizationId } from '../models/projects.js';
+
+// Define any controller functions
+const showOrganizationsPage = async (req, res, next) => {
+  try {
+    const organizations = await getAllOrganizations();
+    const title = 'Our Partner Organizations';
+
+    res.render('organizations', {
+      title,
+      currentPage: 'organizations',
+      organizations,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const showOrganizationDetailsPage = async (req, res, next) => {
+  try {
+    const organizationId = req.params.id;
+    const organizationDetails = await getOrganizationDetails(organizationId);
+
+    if (!organizationDetails) {
+      const err = new Error('Page Not Found');
+      err.status = 404;
+      throw err;
+    }
+
+    const projects = await getProjectsByOrganizationId(organizationId);
+    const title = 'Organization Details';
+
+    res.render('organization', {
+      title,
+      currentPage: 'organizations',
+      organizationDetails,
+      projects,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Export any controller functions
+export { showOrganizationsPage, showOrganizationDetailsPage };

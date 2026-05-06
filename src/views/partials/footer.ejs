@@ -1,3 +1,42 @@
 <footer class="site-footer">
-  <p>&copy; <%= currentYear %> CSE 340</p>
+  <p>&copy; <%= new Date().getFullYear() %> CSE 340 Service Network.
+  <% if (NODE_ENV === 'development') { %>
+    <p>&mdash; DEVELOPMENT &mdash;</p>
+  <% } %>
+
+  </p>
 </footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-card-href]').forEach((card) => {
+      card.addEventListener('click', (event) => {
+        if (event.defaultPrevented) {
+          return;
+        }
+
+        if (event.target.closest('a')) {
+          return;
+        }
+
+        const href = card.dataset.cardHref;
+        if (href) {
+          window.location.href = href;
+        }
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') {
+          return;
+        }
+
+        const href = card.dataset.cardHref;
+        if (href) {
+          event.preventDefault();
+          window.location.href = href;
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
