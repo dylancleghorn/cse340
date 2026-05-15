@@ -1,13 +1,11 @@
 // Import any needed model functions
-import { getUpcomingProjects, getProjectDetails } from '../models/projects.js';
-
-const NUMBER_OF_UPCOMING_PROJECTS = 5;
+import { getAllProjects, getProjectDetails } from '../models/projects.js';
 
 // Define any controller functions
 const showProjectsPage = async (req, res, next) => {
   try {
-    const projects = await getUpcomingProjects(NUMBER_OF_UPCOMING_PROJECTS);
-    const title = 'Upcoming Service Projects';
+    const projects = await getAllProjects();
+    const title = 'Service Projects';
 
     res.render('projects', {
       title,
